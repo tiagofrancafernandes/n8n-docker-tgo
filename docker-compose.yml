@@ -1,0 +1,76 @@
+version: '3.1'
+
+services:
+
+  si:
+    image: n8nio/n8n
+    restart: always
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=${USER_SI}
+      - N8N_BASIC_AUTH_PASSWORD=${PASS_SI}
+      - GENERIC_TIMEZONE
+    ports:
+      - ${PORT_SI}:5678
+    volumes:
+      - ./${DATA_SI}:/root/.n8n
+    command: /bin/sh -c "sleep 2; n8n start --tunnel"
+
+  one:
+    image: n8nio/n8n
+    restart: always
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=${USER_ONE}
+      - N8N_BASIC_AUTH_PASSWORD=${PASS_ONE}
+      - GENERIC_TIMEZONE
+    ports:
+      - ${PORT_ONE}:5678
+    volumes:
+      - ./${DATA_ONE}:/root/.n8n
+    command: /bin/sh -c "sleep 1; n8n start"
+
+  two:
+    image: n8nio/n8n
+    restart: always
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=${USER_TWO}
+      - N8N_BASIC_AUTH_PASSWORD=${PASS_TWO}
+      - GENERIC_TIMEZONE
+    ports:
+      - ${PORT_TWO}:5678
+    volumes:
+      - ./${DATA_TWO}:/root/.n8n
+    command: /bin/sh -c "sleep 1; n8n start"
+
+
+  three:
+    image: n8nio/n8n
+    restart: always
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=${USER_THREE}
+      - N8N_BASIC_AUTH_PASSWORD=${PASS_THREE}
+      - GENERIC_TIMEZONE
+    ports:
+      - ${PORT_THREE}:5678
+    volumes:
+      - ./${DATA_THREE}:/root/.n8n
+    command: /bin/sh -c "sleep 1; n8n start"
+
+
+  four:
+    image: n8nio/n8n
+    restart: always
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=${USER_FOUR}
+      - N8N_BASIC_AUTH_PASSWORD=${PASS_FOUR}
+      - GENERIC_TIMEZONE
+    ports:
+      - ${PORT_FOUR}:5678
+    volumes:
+      - ./${DATA_FOUR}:/root/.n8n
+    command: /bin/sh -c "sleep 1; n8n start"
+
